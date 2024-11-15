@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "themis"
+version = "0.1.0"
+description = ""
+authors = ["Nadeem M <n.adeem@outlook.com>", "annmaryvinod", "sivanienejukumar"]
+readme = "README.md"
+packages = [
+    { include = "app" }
+]
+
+[tool.poetry.scripts]
+dev = "app.scripts.dev:main"
+migrate = "app.scripts.migrate:main"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["standard"], version = "^0.115.2"}
+uvicorn = "^0.32.0"
+pydantic = "^2.9.2"
+pydantic-settings = "^2.6.0"
+pypdf2 = "^3.0.1"
+langchain-huggingface = "^0.1.2"
+psycopg2 = "^2.9.10"
+sentence-transformers = "^3.3.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+black = "^24.10.0"
+flake8 = "^7.1.1"
+isort = "^5.13.2"
+pre-commit = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+exclude = '''
+/(
+    \.venv
+  | build
+  | dist
+  | \.git
+  | \.mypy_cache
+  | __pycache__
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+known_first_party = ["app"]
